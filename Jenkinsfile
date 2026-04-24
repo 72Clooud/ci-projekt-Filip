@@ -36,9 +36,6 @@ pipeline {
             when {
                 expression { params.SRODOWISKO == 'prod' }
             }
-            options {
-                timeout(time: 5, unit: 'MINUTES')
-            }
             steps {
                 input message: 'Czy chcesz wdrażać na produkcję?', ok: 'Tak, wdrazaj!'
             }
