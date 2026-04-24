@@ -20,7 +20,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '[ ! "$(docker ps -a | grep moja-appka)" ] && docker run -d --name moja-appka latest:v1' 
-                sh 'docker run -d 5000 --name moja-appka'
             }
         }
     }
