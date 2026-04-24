@@ -44,9 +44,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            sh 'docker stop moja-appka || true'
-            sh 'docker rm moja-appka || true'
-            sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1'
+            steps {
+                sh 'docker stop moja-appka || true'
+                sh 'docker rm moja-appka || true'
+                sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1'
+            }
         }
     }
     post {
