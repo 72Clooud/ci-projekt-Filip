@@ -11,3 +11,4 @@ def policz_slowa(tekst):
 
 def odwroc(tekst):
     return tekst[::-1]
+
