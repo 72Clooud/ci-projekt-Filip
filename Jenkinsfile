@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    options {
+        timeout(time: 15, unit: 'MINUTES')
+    }
+    parameters {
+        choice(
+            name: 'SRODOWISKO',
+            choices: ['dev', 'staging', 'prod'],
+            description: 'Wybierz srodowisko docelowe'
+        )
+    }
     stages {
         stage('Info') {
             steps {
@@ -22,12 +32,21 @@ pipeline {
                 sh 'docker build -t latest:v1 .'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'docker stop moja-appka || true'
-                sh 'docker rm moja-appka || true'
-                sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1'
+        stage('Zatwierdzenie') {
+            when {
+                expression { params.SRODOWISKO == 'prod' }
             }
+            options {
+                timeout(time: 5, unit: 'MINUTES')
+            }
+            steps {
+                input message: 'Czy chcesz wdrażać na produkcję?', ok: 'Tak, wdrazaj!'
+            }
+        }
+        stage('Deploy') {
+            sh 'docker stop moja-appka || true'
+            sh 'docker rm moja-appka || true'
+            sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1'
         }
     }
     post {
