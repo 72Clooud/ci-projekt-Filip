@@ -26,3 +26,4 @@ if __name__ == "__main__":
     test_policz_slowa()
     test_odwroc()
     print("Wszystkie testy OK")
+
