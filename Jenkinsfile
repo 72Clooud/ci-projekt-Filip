@@ -8,6 +8,11 @@ pipeline {
             }
         }
         stage('Testy') {
+            when {
+                expression {
+                    env.GIT_BRANCH != 'origin/main'
+                }
+            }
             steps {
                 sh 'python3 test_app.py'
             }
@@ -21,7 +26,7 @@ pipeline {
             steps {
                 sh 'docker stop moja-appka || true'
                 sh 'docker rm moja-appka || true'
-                sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1' 
+                sh 'docker run -d --name moja-appka -p 5000:5000 latest:v1'
             }
         }
     }
