@@ -13,9 +13,9 @@ HTML = """<!DOCTYPE html>
     h1 { color: #333; }
     textarea { width: 100%; height: 100px; padding: 8px; font-size: 14px; box-sizing: border-box; }
     .buttons { margin: 10px 0; display: flex; gap: 8px; flex-wrap: wrap; }
-    button { padding: 8px 16px; background: #4a90d9; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button { padding: 8px 16px; background: #4a90d9; color: red; border: none; border-radius: 4px; cursor: pointer; }
     button:hover { background: #357abd; }
-    .wynik { margin-top: 20px; padding: 12px; background: white; border-left: 4px solid #4a90d9; border-radius: 2px; }
+    .wynik { margin-top: 20px; padding: 12px; background: red; border-left: 4px solid #4a90d9; border-radius: 2px; }
     .wynik h3 { margin: 0 0 8px 0; color: #555; font-size: 13px; text-transform: uppercase; }
     .wynik p { margin: 0; font-size: 16px; word-break: break-word; }
   </style>
